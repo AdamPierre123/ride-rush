@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RIDE RUSH | BMX Apparel & Accessories</title>
+<style>
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:#090909;color:#fff;font-family:Arial,Helvetica,sans-serif}
+header{position:sticky;top:0;z-index:10;background:#090909ee;border-bottom:1px solid #292929}
+.bar{max-width:1200px;margin:auto;padding:16px 20px;display:flex;align-items:center;gap:25px}
+.logo{font-size:28px;font-weight:1000}.logo span{color:#f33}
+nav{margin-left:auto}nav a{color:#fff;text-decoration:none;font-weight:800;margin:0 10px}
+.cart{background:#f33;color:#fff;border:0;border-radius:20px;padding:10px 16px;font-weight:bold}
+.hero{text-align:center;padding:100px 20px;background:linear-gradient(#1a1a1a,#090909)}
+.hero h1{font-size:clamp(60px,12vw,130px);line-height:.8;margin:20px 0;font-weight:1000}
+.hero h1 span{color:#f33}.hero p{max-width:650px;margin:30px auto;color:#aaa;font-size:19px;line-height:1.5}
+.button{display:inline-block;background:#f33;color:#fff;text-decoration:none;padding:15px 25px;border-radius:7px;font-weight:bold;margin:5px}
+.products{max-width:1200px;margin:auto;padding:65px 20px}.products h2{font-size:38px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+.card{background:#151515;border:1px solid #333;border-radius:12px;padding:14px}
+.pic{height:220px;border-radius:8px;background:linear-gradient(135deg,#333,#111);display:flex;align-items:center;justify-content:center;font-size:42px;font-weight:900}
+.card h3{margin:17px 4px 8px}.price{font-size:21px;font-weight:bold;margin:4px}
+.buy{width:100%;margin-top:12px;padding:13px;border:0;border-radius:7px;font-weight:bold;cursor:pointer}
+.buy:hover{background:#f33;color:#fff}
+.custom{background:#f33;color:#111;padding:35px;border-radius:14px}
+.custom input,.custom select{padding:12px;width:100%;margin:8px 0;border-radius:6px;border:0}
+.custom button{padding:13px;width:100%;font-weight:bold;border:0;border-radius:7px}
+.about{text-align:center;padding:70px 20px;background:#151515;color:#aaa}.about h2{color:#fff}
+footer{text-align:center;padding:30px;color:#777}
+@media(max-width:700px){nav{display:none}.hero{padding:75px 20px}}
+</style>
+</head>
+<body>
+
+<header>
+<div class="bar">
+<div class="logo">RIDE <span>RUSH</span></div>
+<nav>
+<a href="#shop">SHOP</a>
+<a href="#shirts">SHIRTS</a>
+<a href="#custom">CUSTOM</a>
+</nav>
+<button class="cart" onclick="showCart()">🛒 <span id="count">0</span></button>
+</div>
+</header>
+
+<section class="hero">
+<div>BMX • APPAREL • ACCESSORIES</div>
+<h1>RIDE <span>RUSH</span></h1>
+<p>Handlebar bands, custom bands and BMX apparel for riders who want their ride to stand out.</p>
+<a class="button" href="#shop">SHOP NOW</a>
+<a class="button" href="#custom">CUSTOMIZE</a>
+</section>
+
+<section class="products" id="shop">
+<h2>HANDLEBAR BANDS</h2>
+<div class="grid">
+<div class="card"><div class="pic">RED</div><h3>Red Band</h3><div class="price">$3.99</div><button class="buy" onclick="add('Red Band',3.99)">ADD TO CART</button></div>
+<div class="card"><div class="pic">BLACK</div><h3>Black Band</h3><div class="price">$3.99</div><button class="buy" onclick="add('Black Band',3.99)">ADD TO CART</button></div>
+<div class="card"><div class="pic">BLUE</div><h3>Blue Band</h3><div class="price">$3.99</div><button class="buy" onclick="add('Blue Band',3.99)">ADD TO CART</button></div>
+</div>
+</section>
+
+<section class="products" id="custom">
+<div class="custom">
+<h2>CUSTOM BAND — $6.00</h2>
+<p>Choose a color and add your own text.</p>
+<input id="txt" maxlength="20" placeholder="YOUR TEXT">
+<select id="col"><option>Black</option><option>Red</option><option>Blue</option><option>White</option></select>
+<button onclick="customAdd()">ADD CUSTOM BAND — $6.00</button>
+</div>
+</section>
+
+<section class="products" id="shirts">
+<h2>RIDE RUSH SHIRTS</h2>
+<div class="grid">
+<div class="card"><div class="pic">RR</div><h3>Ride Rush Logo Tee</h3><div class="price">$24.99</div><button class="buy" onclick="add('Ride Rush Logo Tee',24.99)">ADD TO CART</button></div>
+<div class="card"><div class="pic">BMX</div><h3>Ride Rush BMX Tee</h3><div class="price">$24.99</div><button class="buy" onclick="add('Ride Rush BMX Tee',24.99)">ADD TO CART</button></div>
+</div>
+</section>
+
+<section class="about"><h2>RIDE HARD. STAND OUT.</h2><p>RIDE RUSH — BMX apparel and accessories.</p></section>
+<footer>© 2026 RIDE RUSH</footer>
+
+<script>
+let items=[];
+function add(name,price){items.push({name,price});document.getElementById('count').textContent=items.length;alert(name+' added to cart!')}
+function customAdd(){let text=document.getElementById('txt').value||'CUSTOM';let color=document.getElementById('col').value;add('Custom Band - '+color+' - '+text,6)}
+function showCart(){if(!items.length){alert('Your cart is empty.');return}let total=items.reduce((a,x)=>a+x.price,0);alert('RIDE RUSH CART\n\n'+items.map(x=>x.name+' - $'+x.price.toFixed(2)).join('\n')+'\n\nTOTAL: $'+total.toFixed(2))}
+</script>
+</body>
+</html>
